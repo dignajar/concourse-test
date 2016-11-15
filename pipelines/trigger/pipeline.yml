@@ -1,0 +1,16 @@
+---
+resources:
+- name: resource_from_git
+  type: git
+  trigger: true
+  source:
+    uri: https://github.com/dignajar/concourse-test.git
+
+jobs:
+- name: job_helloworld
+  public: true
+  plan:
+  - get: resource_from_git
+  - task: task_helloworld
+    file: resource_from_git/tasks/helloworld/task.yml
+
